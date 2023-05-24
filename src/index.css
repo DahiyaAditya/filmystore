@@ -1,13 +1,144 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+@import url("https://fonts.googleapis.com/css?family=Tangerine");
+body{
+    background: black;
+    color: yellow;
+    padding: 0;
+    margin: 0;
+}
+.header{
+height: fit-content;
+border-bottom: 1px solid white;
+display: grid;
+grid-template-columns:  auto auto;
+grid-gap: 5px;
+}
+.header .main-name{
+    color: red;
+    font-family: 'Tangerine';
+    font-size: 50px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.name-part2{
+    color: white;
+    font-family: 'Tangerine';
+    font-size: 60px;
+}
+.fav{
+    display: flex;
+    justify-content: right;
+    margin-right: 40px;
+    font-size: 20px;
+    padding: 5px;    
+}
+.fav button{
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+.main-card{
+    background-color: rgb(55, 51, 51);
+    width: 250px;
+    max-height: 35rem;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.card-img img{
+    width:15rem;
+    max-height: 20rem;
+    overflow: hidden;
+    padding: 5px;
+    border-radius: 10px;
+}
+.details h1{
+    font-size: 15px;
+    margin: 5px;
+    padding: 5px;   
+}
+.details h1:nth-child(1){
+   display: grid;
+   place-items: center;
+   font-size: 25px;
+}
+.main-card:hover{
+ transform: translateY(-3px);
+ cursor: pointer;
+ transition: 0.1s ease;
+ border: 0.1px solid rgb(245, 245, 181);
+ 
 }
