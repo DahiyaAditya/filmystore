@@ -142,3 +142,9 @@ grid-gap: 5px;
  border: 0.1px solid rgb(245, 245, 181);
  
 }
+.add-main{
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
