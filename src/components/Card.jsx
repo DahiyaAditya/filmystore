@@ -1,29 +1,21 @@
-import React from 'react'
+import { getDocs } from 'firebase/firestore'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import ReactStars from 'react-stars'
+import { movieData } from '../Firebase/Firebase'
 const Card = () => {
-    const [data, setData] = useState(
-        [
-            {
-                name: "Stranger Things",
-                year: "2022",
-                rating: 3,
-                image: "https://images.pexels.com/photos/2752777/pexels-photo-2752777.jpeg?auto=compress&cs=tinysrgb&w=400"
-            },
-            {
-                name: "Stranger Things",
-                year: "2022",
-                rating: 4,
-                image: "https://images.pexels.com/photos/2752777/pexels-photo-2752777.jpeg?auto=compress&cs=tinysrgb&w=400"
-            },
-            {
-                name: "Stranger Things",
-                year: "2022",
-                rating: 4.5,
-                image: "https://images.pexels.com/photos/2752777/pexels-photo-2752777.jpeg?auto=compress&cs=tinysrgb&w=400"
-            }
-        ]
-    )
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+      async function getData(){
+         const data = await getDocs(movieData)
+         data.forEach((obj)=>{
+          setData((prev)=>[...prev , {...(obj.data()), id:obj.id}])
+         })
+      }
+      getData()
+    }, [])
+    
   return (
     <>
     <div className="main">
@@ -33,7 +25,7 @@ const Card = () => {
             <img src={obj.image} alt="movie poster" />
         </div>
         <div className="details">
-            <h1>{obj.name}</h1>
+            <h1>{obj.title}</h1>
             <h1>Rating: {obj.rating}</h1>
             <h1>
               <ReactStars
