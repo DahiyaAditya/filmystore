@@ -112,6 +112,7 @@ background-color: #111;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    color: yellow;
     
 }
 .main-card{
@@ -125,6 +126,8 @@ background-color: #111;
     overflow: hidden;
     overflow-y: auto;
     overflow-x: auto;
+    color: yellow;
+    text-decoration: none;
 }
 .card-img img{
     width:15rem;
@@ -205,6 +208,7 @@ label{
   margin-left: 10%;
   display: flex;
   flex-wrap: wrap;
+  overflow-y: auto;
 }
 .detail-main img{
   width: 20em;
@@ -225,4 +229,41 @@ label{
 .threedot{
   padding-top: 25%;
     padding-left: 45%;
+}
+.review-main{
+  margin-top: 30px;
+}
+.review-main input {
+  background: transparent;
+  color: white;
+}
+.stars {
+  overflow: hidden;
+  position: relative;
+  padding-left: 15px;
+}
+.review-main button{
+  width: 20%;
+ margin-left: 30%;
+ background-color: #fffb00;
+padding: 10px;
+border-radius: 10px; 
+cursor: pointer;
+}
+.adding-data{
+    height: 10%;
+    background-color: transparent;
+    /* overflow-y: scroll; */
+    border: 1px solid black;
+    margin-top: 20px;
+}
+.single-section{
+  border: 0.5px solid;
+  margin: 10px;
+  padding: 5px;
+
+}
+.single-section span{
+  margin: 5px;
+ 
 }

@@ -15,6 +15,8 @@ const AddMovie = () => {
       year : "",
       image: "",
       description: "",
+      rated:0,
+      rating:0
     }
   );
 
