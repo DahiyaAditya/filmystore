@@ -5,6 +5,7 @@ import {doc, getDoc} from 'firebase/firestore'
 import { db } from '../Firebase/Firebase'
 import {ThreeDots } from "react-loader-spinner";
 import { useState,useEffect } from 'react'
+import Review from './Review'
 const Details = () => {
   const {id} = useParams();
   const [loading, setloading] = useState(false)
@@ -12,7 +13,9 @@ const Details = () => {
          title:"",
          year:"",
          image:"",
-         description:""
+         description:"",
+         rating:0,
+         rated:0,
   })
   useEffect(() => {
     async function getData(){
@@ -38,10 +41,12 @@ const Details = () => {
             <ReactStars
             size={20}
             half={true}
-            value={5}
+            value={fetchIdData.rating/fetchIdData.rated}
             edit={false}
             ></ReactStars>
             <p>{fetchIdData.description}</p>
+            <hr />
+        <Review id={id} prevRating={fetchIdData.rating} userRated={fetchIdData.rated}></Review>
         </div>
     </div>
       }

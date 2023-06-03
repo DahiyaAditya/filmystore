@@ -1,5 +1,5 @@
 import { getDocs } from 'firebase/firestore'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import ReactStars from 'react-stars'
 import { movieData } from '../Firebase/Firebase'
@@ -20,6 +20,8 @@ const Card = () => {
       getData()
     }, [])
     
+   
+    
   return (
     <>
      
@@ -35,7 +37,8 @@ const Card = () => {
             <h1>Rating: {obj.rating}</h1>
             <h1>
               <ReactStars
-                value={obj.rating}
+                value={obj.rating/obj.rated}
+                edit={false}
               ></ReactStars>
             </h1>
             <h1>Year: {obj.year}</h1>
