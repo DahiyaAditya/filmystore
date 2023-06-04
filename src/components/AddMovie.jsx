@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import {addDoc} from 'firebase/firestore';
 import { movieData } from '../Firebase/Firebase';
 import swal from 'sweetalert';
-
+import { appState } from '../App';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddMovie = () => {
-
+  const useAppState = useContext(appState);
+  const navigate = useNavigate();
   const [form , setForm] = useState(
     {
       title : "",
@@ -37,8 +39,8 @@ const AddMovie = () => {
   
   const addMovies = async ()=>{
     setLoading(true);
-    console.log("clicked");
     try {
+      if(useAppState.login){
         await addDoc(movieData, form);
         swal({
           title: "Successfully Added",
@@ -46,6 +48,9 @@ const AddMovie = () => {
           buttons: false,
           timer: 3000
         })
+      }else{
+          navigate('/login')
+      }
     } catch(err) {
       swal({
         title: err,
@@ -74,7 +79,7 @@ const AddMovie = () => {
               type="text"
               name="year"
               id="year"
-              // value={form.year}
+              value={form.year}
               onChange={changeYear}
             />
             <label htmlFor="image">Image</label>
@@ -82,7 +87,7 @@ const AddMovie = () => {
               type="text"
               name="image"
               id="image"
-              // value={form.image}
+              value={form.image}
               onChange={changeImage}
             />
             <label htmlFor="title">discription</label>
@@ -93,7 +98,7 @@ const AddMovie = () => {
               type="text"
               name="discription"
               id="discription"
-              // value={form.description}
+              value={form.description}
               onChange={changeDes}
             />
             <button className="button-50" onClick={addMovies}>

@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactStars from 'react-stars'
 import { useState , useEffect} from 'react';
 import { reviewData , db} from '../Firebase/Firebase';
 import { addDoc, doc, updateDoc, query, where, getDocs } from 'firebase/firestore';
 import { TailSpin } from 'react-loader-spinner';
+import { appState } from '../App';
 import swal from 'sweetalert'
+import {  useNavigate } from 'react-router-dom';
+
 const Review = ({id , prevRating, userRated}) => {
+    const useAppState = useContext(appState)
+    const navigate = useNavigate();
     const [rating, setRating] = useState(0);
     const [loading, setLoading] = useState(false)
     const [thought, setThought] = useState("")
     const [data, setData] = useState([]);
-    // const [newAdded, setNewAdded] = useState(0);
+    const [newAdded, setNewAdded] = useState(0);
     const sendReview = async () => {
         setLoading(true);
         try {
+          if(useAppState.login){
             await addDoc(reviewData, {
                 movieid: id,
-                name: "Aditya Singh",
+                name: useAppState.userName,
                 rating: rating,
                 thought: thought,
                 timestamp: new Date().getTime()
@@ -28,13 +34,16 @@ const Review = ({id , prevRating, userRated}) => {
             })
             setRating(0);
             setThought("");
-            // setNewAdded(newAdded + 1);
+            setNewAdded(newAdded + 1);
             swal({
                 title: "Review Sent",
                 icon: "success",
                 buttons: false,
                 timer: 3000
               })
+            }else{
+              navigate('/login')
+            }
         } catch (error) {
             swal({
                 title: error.message,
@@ -54,7 +63,7 @@ const Review = ({id , prevRating, userRated}) => {
           });
         }
         getReviewData()
-      }, [])
+      }, [newAdded])
 
   return (
     <>
